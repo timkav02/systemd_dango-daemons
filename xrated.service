@@ -1,0 +1,12 @@
+[Unit]
+Description= xrateddb daemon
+After=network.target
+
+[Service]
+User=bilqis
+Group=www-data
+WorkingDirectory=/var/www/xrated/xrateddb/
+ExecStart=/var/www/xrated/bin/gunicorn --workers 3 --bind unix:/var/www/xrated/run/gunicorn.sock xrateddb.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

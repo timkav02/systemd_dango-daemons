@@ -1,0 +1,12 @@
+[Unit]
+Description= kissdb daemon
+After=network.target
+
+[Service]
+User=bilqis
+Group=www-data
+WorkingDirectory=/var/www/kiss/kissdb/
+ExecStart=/var/www/kiss/bin/gunicorn --workers 3 --bind unix:/var/www/kiss/run/gunicorn.sock kissdb.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
